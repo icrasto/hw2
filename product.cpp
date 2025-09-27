@@ -34,10 +34,13 @@ void Product::subtractQty(int num)
     qty_ -= num;
 }
 
+
 int Product::getQty() const
 {
     return qty_;
 }
+
+
 
 /**
  * default implementation...can be overriden in a future

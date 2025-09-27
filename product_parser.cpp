@@ -128,13 +128,29 @@ std::string ProductBookParser::categoryID()
  * Your job to fill in the code to create a new book product
  * using the data members in this class and the parent ProductParser class
  */
+
+ /**
+ * PARSER PARENT CLASS VARIABLES:
+ category: call categoryID()
+ name: prodName_
+ price: price_
+ qty: qty_
+ */
+
+ /**
+ * PARSER BOOK CLASS VARIABLES:
+ ISBN: isbn_
+ author: author_
+ */
 Product* ProductBookParser::makeProduct()
 {
-
+  // initialize product w constructors and using parser info
+  Product* newbook = new Book(categoryID(), prodName_, price_, qty_, isbn_, author_);
+  return newbook;
 
 }
 
-
+ 
 ProductClothingParser::ProductClothingParser()
 {
 }
@@ -183,11 +199,24 @@ std::string ProductClothingParser::categoryID()
  * Your job to fill in the code to create a new clothing product
  * using the data members in this class and the parent ProductParser class
  */
+
+  /**
+ * PARSER PARENT CLASS VARIABLES:
+ category: call categoryID()
+ name: prodName_
+ price: price_
+ qty: qty_
+ */
+
+/**
+ * PARSER CLOTHING CLASS VARIABLES:
+ size: size_
+ brand: brand_
+ */
 Product* ProductClothingParser::makeProduct()
 {
-
-
-
+  Product* newclothing = new Clothing(categoryID(), prodName_, price_, qty_, size_, brand_);
+  return newclothing;
 }
 
 
@@ -243,8 +272,22 @@ std::string ProductMovieParser::categoryID()
  * Your job to fill in the code to create a new movie product
  * using the data members in this class and the parent ProductParser class
  */
+
+ /**
+ * PARSER PARENT CLASS VARIABLES:
+ category: call categoryID()
+ name: prodName_
+ price: price_
+ qty: qty_
+ */
+
+/**
+ * PARSER MOVIE CLASS VARIABLES:
+ genre: genre_
+ rating: rating_
+ */
 Product* ProductMovieParser::makeProduct()
 {
-
-
+  Product* newmovie = new Movie(categoryID(), prodName_, price_, qty_, genre_, rating_);
+  return newmovie;
 }

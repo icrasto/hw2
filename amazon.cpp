@@ -9,6 +9,7 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "mydatastore.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -29,7 +30,7 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
 
 
 
@@ -99,9 +100,41 @@ int main(int argc, char* argv[])
                 }
                 done = true;
             }
-	    /* Add support for other commands here */
+	    /* Add support for other commands here 
+        need to add: add, view cart, buy cart*/
+            else if (cmd == "ADD") {
+                string username;
+                unsigned int hit;
+                ss >> username >> hit;
+                username = convToLower(username);
+                
+            // NEW VERSION W MEMBER FUNCTION
+            // COMPLETE THIS OUTSIDE THE FUNCTION & BEFORE IS CALLED::::
+                if (hit > hits.size() || hit < 0 || (ds.addCartItem(username, hits[hit-1]) == false)) {
+                    std::cout << "Invalid request" << std::endl;
+                
+            }
 
-
+    
+            }
+            else if (cmd == "VIEWCART") {
+                string username;
+                ss >> username;
+                username = convToLower(username);
+                // go through product vector FIFO and use display string
+                if(ds.viewCart(username) == false) {
+                    std::cout << "Invalid username" << std::endl;
+                }
+                
+            }
+            else if (cmd == "BUYCART") {
+                string username;
+                ss >> username;
+                username = convToLower(username);
+                if (ds.buyCart(username) == false) {
+                    std::cout << "Invalid username" << std::endl;
+                }
+            }
 
 
             else {

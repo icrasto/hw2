@@ -13,19 +13,47 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
+  /* intersections are AND searches */
+  std::set<T> results;
+  // maps and keywords() functions i dont think are written yet but these r helpers?
 
+  // go through first set and see if it exists in the other set, if so add to new set
+  // it1 is not the value itself but pointer to set value
+  typename std::set<T>::iterator it1;
+// TOTAL RUNTIME: O(nlogn)
 
-
-
+  // runs O(n)
+  for (it1 = s1.begin(); it1 != s1.end(); ++it1) {
+    // this means that it was found in the other set, add to new set
+    // find function runs O(logn) -> CHECK 
+    if (s2.find(*it1) != s2.end()) {
+      // check runtime i think O(logn)
+      results.insert(*it1);
+    }
+  }
+  return results;
 
 }
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
+  // go through first and second set and add to set, will automatically ignore if already in set
 
+  std::set<T> results;
 
+  typename std::set<T>::iterator it1;
+  typename std::set<T>::iterator it2;
+  // O(n)
+  for (it1 = s1.begin(); it1 != s1.end(); ++it1) {
+    // runs O(logn)
+    results.insert(*it1);
+  }
 
-
+  for (it2 = s2.begin(); it2 != s2.end(); ++it2) {
+    // runs O(logn)
+    results.insert(*it2);
+  }
+  return results;
 
 }
 
